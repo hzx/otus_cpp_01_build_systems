@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.2)
 
 project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-message("TRAVIS_BUILD_NUMBER: $ENV{TRAVIS_BUILD_NUMBER}")
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
@@ -14,15 +12,9 @@ add_library(helloworld lib.cpp)
 
 add_executable(test_version test_version.cpp)
 
-set_target_properties(helloworld test_version PROPERTIES
-    CXX_STANDARD 14
-    CXX_STANDARD_REQUIRED ON
-    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
-)
-
-# spdlog obsolete
-set_target_properties(helloworld_cli PROPERTIES
-    CXX_STANDARD 11
+set_target_properties(helloworld_cli helloworld test_version PROPERTIES
+    C_STANDARD 11
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
 )
