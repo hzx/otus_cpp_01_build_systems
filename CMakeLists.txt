@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+set (Boost_USE_STATIC_LIBS ON)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
