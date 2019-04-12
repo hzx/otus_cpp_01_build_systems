@@ -14,7 +14,14 @@ add_library(helloworld lib.cpp)
 
 add_executable(test_version test_version.cpp)
 
-set_target_properties(helloworld_cli helloworld test_version PROPERTIES
+set_target_properties(helloworld test_version PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
+)
+
+# spdlog obsolete
+set_target_properties(helloworld_cli PROPERTIES
     CXX_STANDARD 11
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
